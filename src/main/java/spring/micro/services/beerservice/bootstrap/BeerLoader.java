@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import spring.micro.services.beerservice.domain.Beer;
 import spring.micro.services.beerservice.repositories.BeerRepository;
+import spring.micro.services.beerservice.web.model.BeerStyleEnum;
 
 import java.math.BigDecimal;
 
@@ -31,7 +32,7 @@ public class BeerLoader implements CommandLineRunner {
         if(this.beerRepository.count() == 0) {
             this.beerRepository.save(Beer.builder()
                     .name("Radler")
-                    .style("Pilz")
+                    .beerStyle(BeerStyleEnum.PILSNER)
                     .quantityToBrew(200)
                     .minOnHand(12)
                     .upc(12345L)
@@ -41,7 +42,7 @@ public class BeerLoader implements CommandLineRunner {
 
             this.beerRepository.save(Beer.builder()
                     .name("Krombacher")
-                    .style("Krombacher")
+                    .beerStyle(BeerStyleEnum.PORTER)
                     .quantityToBrew(200)
                     .minOnHand(11)
                     .upc(12344L)
