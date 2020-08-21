@@ -37,7 +37,7 @@ public class Beer {
     private Timestamp lastModifiedDate;
     private String name;
     @NotNull
-    private BeerStyleEnum beerStyle;
+    private String beerStyle;
     @Column(unique = true)
     private String upc;
     private BigDecimal price;
