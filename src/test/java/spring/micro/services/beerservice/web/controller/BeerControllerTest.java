@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import spring.micro.services.beerservice.bootstrap.BeerLoader;
 import spring.micro.services.beerservice.services.BeerService;
 import spring.micro.services.beerservice.web.model.BeerDto;
 import spring.micro.services.beerservice.web.model.BeerStyleEnum;
@@ -40,7 +41,7 @@ class BeerControllerTest {
                 .name("My Alchohol Free Beer")
                 .beerStyle(BeerStyleEnum.PILSNER)
                 .price(new BigDecimal("5.00"))
-                .upc(12345L)
+                .upc(BeerLoader.BEER_1_UPC)
                 .build();
     }
 
