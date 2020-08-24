@@ -13,5 +13,6 @@ import spring.micro.services.beerservice.web.model.BeerDto;
 @DecoratedWith(BeerMapperDecorator.class)
 public interface BeerMapper {
     BeerDto beerToBeerDto(Beer beer);
+    BeerDto beerToBeerDtoWithInventory(Beer beer);
     Beer beerDtoToBeer(BeerDto beerDto);
 }

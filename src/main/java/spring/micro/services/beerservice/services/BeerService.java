@@ -11,7 +11,7 @@ import java.util.UUID;
  * Created by Nibir Hossain on 21.08.20
  */
 public interface BeerService {
-    BeerDto getBeerById(UUID beerId);
+    BeerDto getBeerById(UUID beerId, Boolean showInventoryOnHand);
 
     BeerDto saveBeer(BeerDto beerDto);
 
