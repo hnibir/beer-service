@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = {"/api/v1/beer"})
+@RequestMapping(value = {"/api/v1/"})
 public class BeerController {
 
     private static final Integer DEFAULT_PAGE_NUMBER = 0;
@@ -27,7 +27,7 @@ public class BeerController {
 
     private final BeerService beerService;
 
-    @GetMapping(produces = { "application/json" })
+    @GetMapping(produces = { "application/json" }, path = "beer")
     public ResponseEntity<BeerPagedList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                    @RequestParam(value = "beerName", required = false) String beerName,
@@ -51,7 +51,7 @@ public class BeerController {
         return new ResponseEntity<>(beerList, HttpStatus.OK);
     }
 
-    @GetMapping(value = {"/{beerId}"})
+    @GetMapping(value = {"beer/{beerId}"})
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId,
                                                @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand) {
 
@@ -61,12 +61,17 @@ public class BeerController {
         return new ResponseEntity<>(this.beerService.getBeerById(beerId, showInventoryOnHand), HttpStatus.OK);
     }
 
-    @PostMapping
+    @GetMapping(value = {"beerUpc/{upc}"})
+    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") String upc) {
+        return new ResponseEntity<>(this.beerService.getBeerByUpc(upc), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "beer")
     public ResponseEntity saveNewBeer(@RequestBody @Validated BeerDto beerDto) {
         return new ResponseEntity(this.beerService.saveBeer(beerDto), HttpStatus.CREATED);
     }
 
-    @PutMapping(value = {"/{beerId}"})
+    @PutMapping(value = {"beer/{beerId}"})
     public ResponseEntity updateBeerById(@PathVariable("beerId") UUID beerId, @Validated @RequestBody BeerDto beerDto) {
         return new ResponseEntity(this.beerService.updateBeer(beerId,  beerDto), HttpStatus.NO_CONTENT);
     }
