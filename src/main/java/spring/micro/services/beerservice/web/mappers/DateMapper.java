@@ -13,23 +13,22 @@ import java.time.ZoneOffset;
 
 @Component
 public class DateMapper {
-    public OffsetDateTime asOffsetDateTime(Timestamp timestamp) {
-        if(timestamp != null) {
+
+    public OffsetDateTime asOffsetDateTime(Timestamp ts){
+        if (ts != null){
+            return OffsetDateTime.of(ts.toLocalDateTime().getYear(), ts.toLocalDateTime().getMonthValue(),
+                    ts.toLocalDateTime().getDayOfMonth(), ts.toLocalDateTime().getHour(), ts.toLocalDateTime().getMinute(),
+                    ts.toLocalDateTime().getSecond(), ts.toLocalDateTime().getNano(), ZoneOffset.UTC);
+        } else {
             return null;
         }
-
-        LocalDateTime localDateTime = timestamp.toLocalDateTime();
-        return OffsetDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue(),
-                localDateTime.getDayOfMonth(), localDateTime.getHour(),
-                localDateTime.getMinute(), localDateTime.getSecond(),
-                localDateTime.getNano(), ZoneOffset.UTC);
     }
 
-    public Timestamp asTimestamp(OffsetDateTime offsetDateTime) {
-        if(offsetDateTime == null) {
+    public Timestamp asTimestamp(OffsetDateTime offsetDateTime){
+        if(offsetDateTime != null) {
+            return Timestamp.valueOf(offsetDateTime.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
+        } else {
             return null;
         }
-
-        return Timestamp.valueOf(offsetDateTime.atZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
     }
 }

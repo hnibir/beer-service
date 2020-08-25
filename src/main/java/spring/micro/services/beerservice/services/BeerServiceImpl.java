@@ -79,8 +79,9 @@ public class BeerServiceImpl implements BeerService {
         if (showInventoryOnHand) {
             return this.beerMapper.beerToBeerDtoWithInventory(this.beerRepository.findById(beerId).orElseThrow(NotFoundException::new));
         } else {
-            return this.beerMapper.beerToBeerDto(this.beerRepository.findById(beerId).orElseThrow(NotFoundException::new));
-
+            BeerDto beerDto = this.beerMapper.beerToBeerDto(this.beerRepository.findById(beerId).orElseThrow(NotFoundException::new));
+            System.out.println(beerDto);
+            return beerDto;
         }
     }
 
