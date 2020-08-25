@@ -38,7 +38,7 @@ class BeerControllerTest {
     @BeforeEach
     void setUp() {
         validBeerDto = BeerDto.builder()
-                .name("My Alchohol Free Beer")
+                .beerName("My Alchohol Free Beer")
                 .beerStyle(BeerStyleEnum.PILSNER)
                 .price(new BigDecimal("5.00"))
                 .upc(BeerLoader.BEER_1_UPC)

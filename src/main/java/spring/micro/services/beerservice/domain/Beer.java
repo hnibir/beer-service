@@ -37,7 +37,7 @@ public class Beer {
     private Timestamp createdDate;
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
-    private String name;
+    private String beerName;
     @NotNull
     private String beerStyle;
     @Column(unique = true)

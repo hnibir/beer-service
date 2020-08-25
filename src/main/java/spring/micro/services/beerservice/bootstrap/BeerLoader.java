@@ -35,7 +35,7 @@ public class BeerLoader implements CommandLineRunner {
     private void loadBeerObjects() {
         if(this.beerRepository.count() == 0) {
             this.beerRepository.save(Beer.builder()
-                    .name("Radler")
+                    .beerName("Radler")
                     .beerStyle(BeerStyleEnum.PILSNER.name())
                     .quantityToBrew(200)
                     .minOnHand(12)
@@ -45,7 +45,7 @@ public class BeerLoader implements CommandLineRunner {
             );
 
             this.beerRepository.save(Beer.builder()
-                    .name("Krombacher")
+                    .beerName("Krombacher")
                     .beerStyle(BeerStyleEnum.PORTER.name())
                     .quantityToBrew(200)
                     .minOnHand(11)
@@ -55,7 +55,7 @@ public class BeerLoader implements CommandLineRunner {
             );
 
             this.beerRepository.save(Beer.builder()
-                    .name("Pilz")
+                    .beerName("Pilz")
                     .beerStyle(BeerStyleEnum.IPA.name())
                     .quantityToBrew(200)
                     .minOnHand(11)
