@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * Created by Nibir Hossain on 12.08.20
  */
 
-// @Component
+@Component
 @Slf4j
 public class BeerLoader implements CommandLineRunner {
 
@@ -28,15 +28,17 @@ public class BeerLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-        loadBeerObjects();
+    public void run(String... args) {
+        if(this.beerRepository.count() == 0) {
+            loadBeerObjects();
+        }
     }
 
     private void loadBeerObjects() {
         if(this.beerRepository.count() == 0) {
             this.beerRepository.save(Beer.builder()
-                    .beerName("Radler")
-                    .beerStyle(BeerStyleEnum.PILSNER.name())
+                    .beerName("Mango Bobs")
+                    .beerStyle(BeerStyleEnum.IPA.name())
                     .quantityToBrew(200)
                     .minOnHand(12)
                     .upc(BEER_1_UPC)
@@ -55,8 +57,8 @@ public class BeerLoader implements CommandLineRunner {
             );
 
             this.beerRepository.save(Beer.builder()
-                    .beerName("Pilz")
-                    .beerStyle(BeerStyleEnum.IPA.name())
+                    .beerName("Radler")
+                    .beerStyle(BeerStyleEnum.PALE_ALE.name())
                     .quantityToBrew(200)
                     .minOnHand(11)
                     .upc(BEER_3_UPC)
